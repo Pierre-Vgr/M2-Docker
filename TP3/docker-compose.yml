@@ -1,0 +1,39 @@
+version: "3"
+services:
+  nginx:
+    container_name: nginx
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./src/app/html/:/var/www/html
+      - ./src/nginx/conf.d/:/etc/nginx/conf.d
+
+  php:
+    container_name: php
+    image: php:fpm-alpine
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    volumes:
+      - ./src/db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=MotDePasseUltraSecure
+      - MYSQL_USER=pierre
+      - MYSQL_PASSWORD=SuperMotDePasse
+      - MYSQL_DATABASE=db
+
+  php-myadmin:
+    container_name: php-myadmin
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST:mysql
+    links: 
+    - mysql:db
+

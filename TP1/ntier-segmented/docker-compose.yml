@@ -1,0 +1,28 @@
+---
+version: "2.1"
+services:
+  
+  web:
+    container_name: web
+    image: praqma/network-multitool
+    networks:
+      - frontend
+
+
+  app:
+    container_name: app
+    image: praqma/network-multitool
+    networks:
+
+      - backend
+
+  bdd:
+    container_name: bdd
+    image: praqma/network-multitool
+    networks:
+      - backend
+
+
+networks:
+   frontend:
+   backend:

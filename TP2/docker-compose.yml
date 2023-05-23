@@ -1,0 +1,20 @@
+---
+version: '3.9'
+services:
+  node:
+    container_name: ma_super_app
+    image: ma_super_app
+    environment:
+      - DATABASE_USERNAME=pierre
+      - DATABASE_PASSWOR=SuperMotDePasse
+      - DATABASE_NAME=db
+
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=MotDePasseUltraSecure
+      - MYSQL_USER=pierre
+      - MYSQL_PASSWORD=SuperMotDePasse
+      - MYSQL_DATABASE=db
